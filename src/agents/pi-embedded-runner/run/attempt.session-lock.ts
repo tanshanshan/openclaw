@@ -15,6 +15,10 @@ type ActiveWriteLockState = {
 
 const ACTIVE_EMBEDDED_PROMPT_HOLDERS = new Map<string, () => void>();
 
+export function resetActiveEmbeddedPromptHoldersForTest(): void {
+  ACTIVE_EMBEDDED_PROMPT_HOLDERS.clear();
+}
+
 export class EmbeddedAttemptSessionContendedError extends Error {
   constructor(sessionFile: string) {
     super(`embedded prompt lock already held for session file: ${sessionFile}`);

@@ -20,6 +20,7 @@ import {
   installPromptSubmissionLockRelease,
   installSessionEventWriteLock,
   installSessionExternalHookWriteLock,
+  resetActiveEmbeddedPromptHoldersForTest,
 } from "./attempt.session-lock.js";
 
 const lockOptions = {
@@ -33,6 +34,7 @@ const tempDirs: string[] = [];
 
 afterEach(async () => {
   resetSessionWriteLockStateForTest();
+  resetActiveEmbeddedPromptHoldersForTest();
   for (const dir of tempDirs.splice(0)) {
     await fs.rm(dir, { recursive: true, force: true });
   }
